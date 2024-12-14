@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Edit Post{% endblock %}
+{% block content %}
+<h2>Posts by {{ user.username }}</h2>
+    {% if posts %}
+        <ul>
+        {% for post in posts %}
+            <li>
+                <strong>{{ post.title }}</strong><br>
+                {{ post.content }}<br>
+                <a href="/posts/edit/{{ post.id }}">Edit</a> |
+                <form action="/posts/delete/{{ post.id }}" method="post" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No posts available for this user.</p>
+    {% endif %}
+    <a href="/users/">Back to Users</a>
+{% endblock %}
