@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Posts List{% endblock %}
+{% block content %}
+<h2>All Posts</h2>
+<a href="/posts/create">Create New Post</a>
+<ul>
+    {% for post in posts %}
+    <li>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+            <form action="/posts/edit/{{ post.id }}" method="get">
+                <button type="submit">Edit</button>
+            </form>
+            <form action="/posts/delete/{{ post.id }}" method="post">
+                <button type="submit">Delete</button>
+            </form>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
